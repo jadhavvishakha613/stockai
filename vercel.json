@@ -9,7 +9,7 @@
       "destination": "/api/yahoo/:path*"
     },
     {
-      "source": "/((?!api/).*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ],
