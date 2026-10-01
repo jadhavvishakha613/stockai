@@ -1,0 +1,7 @@
+project_id = "vutkyvxncvvxkkrhptpu"
+
+[functions.stock-data]
+verify_jwt = false
+
+[functions.gemini-stock-prediction]
+verify_jwt = false
