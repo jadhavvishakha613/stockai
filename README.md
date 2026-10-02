@@ -6,7 +6,7 @@ A full-stack, authentication-gated web application that delivers real-time stock
 
 ## 🚀 Live Demo
 
-**[https://stockai1-mavdt0p8i-jvishakha950-3756.vercel.app](https://stockai1-mavdt0p8i-jvishakha950-3756.vercel.app)**
+**[https://stockai1-eight.vercel.app/](https://stockai1-eight.vercel.app/)**
 
 ---
 
