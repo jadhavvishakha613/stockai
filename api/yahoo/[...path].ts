@@ -18,8 +18,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Reconstruct query string (everything after ?)
   const { path: _path, ...rest } = req.query;
   const qs = new URLSearchParams(
-    Object.entries(rest).flatMap(([k, v]) =>
-      Array.isArray(v) ? v.map(val => [k, val]) : [[k, v ?? '']]
+    Object.entries(rest).flatMap(([k, v]): [string, string][] =>
+      Array.isArray(v) ? v.map((val): [string, string] => [k, val]) : [[k, v ?? '']]
     )
   ).toString();
 
