@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // https://vitejs.dev/config/
+// Cache-bust: force clean Vercel build for Google Search Console verification
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
