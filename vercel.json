@@ -5,7 +5,7 @@
   "routes": [
     {
       "src": "/api/yahoo/(.*)",
-      "dest": "/api/yahoo/[...path]"
+      "dest": "/api/yahoo"
     },
     {
       "src": "/assets/(.*)",

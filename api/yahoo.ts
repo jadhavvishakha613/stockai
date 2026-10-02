@@ -1,5 +1,5 @@
 /**
- * Vercel serverless function: proxy for Yahoo Finance v8 chart API.
+ * Vercel serverless function: proxy for Yahoo Finance API.
  * Handles all requests matching /api/yahoo/* and forwards them to
  * https://query1.finance.yahoo.com/*
  *
@@ -11,19 +11,12 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Extract the path segments after /api/yahoo/
-  const pathParam = req.query.path;
-  const segments = Array.isArray(pathParam) ? pathParam.join('/') : pathParam ?? '';
+  // req.url is the full incoming URL, e.g. /api/yahoo/v8/finance/chart/AAPL?interval=1d&range=1d
+  // Strip the /api/yahoo prefix to get the path+query to forward upstream.
+  const url = req.url ?? '';
+  const rest = url.replace(/^\/api\/yahoo/, '');
 
-  // Reconstruct query string (everything after ?)
-  const { path: _path, ...rest } = req.query;
-  const qs = new URLSearchParams(
-    Object.entries(rest).flatMap(([k, v]): [string, string][] =>
-      Array.isArray(v) ? v.map((val): [string, string] => [k, val]) : [[k, v ?? '']]
-    )
-  ).toString();
-
-  const targetUrl = `https://query1.finance.yahoo.com/${segments}${qs ? `?${qs}` : ''}`;
+  const targetUrl = `https://query1.finance.yahoo.com${rest}`;
 
   try {
     const upstream = await fetch(targetUrl, {
@@ -35,10 +28,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const body = await upstream.text();
 
-    // Pass through status and content-type
     res.status(upstream.status);
     res.setHeader('Content-Type', upstream.headers.get('content-type') ?? 'application/json');
-    // Allow browsers to read the response
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(body);
   } catch (err: unknown) {
