@@ -4,6 +4,10 @@
   "installCommand": "npm install",
   "routes": [
     {
+      "src": "/api/yahoo/(.*)",
+      "dest": "/api/yahoo/[...path]"
+    },
+    {
       "src": "/assets/(.*)",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
