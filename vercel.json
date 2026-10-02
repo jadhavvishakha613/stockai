@@ -5,11 +5,7 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/api/yahoo/:path*",
-      "destination": "/api/yahoo/:path*"
-    },
-    {
-      "source": "/:path*",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ],
