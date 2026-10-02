@@ -119,10 +119,6 @@ Contributions are welcome. To contribute:
 
 Please keep pull requests focused on a single change and include a clear description of what was changed and why.
 
-## Versioning
-
-This project does not currently use version tags or releases.
-
 ## Authors
 
 **Vishakha Jagdish Jadhav** — Final Year B.Tech, Major Project 1
